@@ -1,0 +1,57 @@
+@import '~bootstrap/scss/bootstrap';
+
+.App {
+	text-align: center;
+}
+
+nav {
+	position: fixed;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100vw;
+	min-height: 10vh;
+	background: black;
+	color: white;
+	z-index: 10;
+}
+
+.mainPage {
+	position: absolute;
+	top: 10vh;
+	width: 100%;
+	z-index: 0;
+}
+
+.navRouter {
+	width: 50%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	list-style: none;
+	text-decoration: none;
+	margin: 0;
+}
+
+.navRouterLink {
+	color: white;
+	text-decoration: none;
+}
+
+label {
+	text-align: left;
+	display: block;
+	margin: 0.5rem 0rem 0.5rem 0rem;
+}
+
+.form-group {
+	padding: 5%;
+}
+
+.form-control {
+	width: 50%;
+}
+
+.btn {
+	margin: 0.5rem 0rem 0.5rem 0rem;
+}
