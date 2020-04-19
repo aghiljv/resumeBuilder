@@ -55,3 +55,53 @@ label {
 .btn {
 	margin: 0.5rem 0rem 0.5rem 0rem;
 }
+
+.skillHolder {
+	text-align: left;
+}
+.skillInput {
+	padding: 1%;
+}
+.skillClass {
+	display: inline-flex;
+	position: relative;
+	min-width: 10vh;
+	justify-content: space-around;
+	margin: 1% 1% 0% 1%;
+	padding: 1%;
+	background: black;
+	color: white;
+	border-radius: 5vh;
+}
+.closeButton {
+	height: 3vh;
+	width: 3vh;
+	background: white;
+	color: black;
+	border-radius: 50%;
+	text-align: center;
+}
+
+div.ReactTags__suggestions {
+	position: absolute;
+}
+div.ReactTags__suggestions ul {
+	list-style-type: none;
+	box-shadow: 0.05em 0.01em 0.5em rgba(0, 0, 0, 0.2);
+	background: white;
+	width: 200px;
+}
+div.ReactTags__suggestions li {
+	border-bottom: 1px solid #ddd;
+	padding: 5px 10px;
+	margin: 0;
+}
+div.ReactTags__suggestions li mark {
+	text-decoration: underline;
+	background: none;
+	font-weight: 600;
+}
+div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
+	background: #b7cfe0;
+	cursor: pointer;
+}
