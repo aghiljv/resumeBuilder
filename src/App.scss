@@ -44,12 +44,52 @@ label {
 	margin: 0.5rem 0rem 0.5rem 0rem;
 }
 
-.form-group {
-	padding: 5%;
+.sectionHolder {
+	background: black;
+	border-radius: 1vh;
+	margin: 2%;
+	height: 30vh;
+}
+.indSection {
+	background: white;
+	height: 12vh;
+	margin: 4%;
+	border-radius: 5%;
 }
 
-.form-control {
-	width: 50%;
+.iconStyle {
+	height: 100%;
+}
+
+.sectionContent {
+	background: black;
+	color: white;
+	border-radius: 1vh;
+	margin: 2%;
+	height: 75vh;
+}
+.sectionHeader {
+	margin: 4%;
+}
+.halfInput {
+	margin: 0% 4% 0% 4%;
+}
+.checkBoxHolder {
+	margin: 4%;
+}
+
+.form-group {
+	// padding: 5%;
+}
+
+.react-datepicker-wrapper {
+	display: block !important;
+}
+
+.buttonDiv {
+	display: flex;
+	justify-content: flex-end;
+	margin: 4%;
 }
 
 .btn {
@@ -62,6 +102,9 @@ label {
 .skillInput {
 	padding: 1%;
 }
+.skillInputView {
+	display: none;
+}
 .skillClass {
 	display: inline-flex;
 	position: relative;
@@ -69,8 +112,8 @@ label {
 	justify-content: space-around;
 	margin: 1% 1% 0% 1%;
 	padding: 1%;
-	background: black;
-	color: white;
+	background: white;
+	color: black;
 	border-radius: 5vh;
 }
 .closeButton {
@@ -89,10 +132,12 @@ div.ReactTags__suggestions ul {
 	list-style-type: none;
 	box-shadow: 0.05em 0.01em 0.5em rgba(0, 0, 0, 0.2);
 	background: white;
-	width: 200px;
+	color: black;
+	width: 100%;
 }
 div.ReactTags__suggestions li {
 	border-bottom: 1px solid #ddd;
+	width: 100%;
 	padding: 5px 10px;
 	margin: 0;
 }
@@ -103,5 +148,6 @@ div.ReactTags__suggestions li mark {
 }
 div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
 	background: #b7cfe0;
+	width: 100%;
 	cursor: pointer;
 }

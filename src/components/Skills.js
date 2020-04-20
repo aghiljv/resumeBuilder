@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import '../App.scss';
 import { WithContext as ReactTags } from 'react-tag-input';
+import { Edit } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 import { MainContext } from '../MainContext.js';
 
 function Skills() {
-	//temptest start
-	const { suggestionsList } = useContext(MainContext);
+	const { suggestionsList, viewRoute } = useContext(MainContext);
 	const [suggestions, setSuggetions] = suggestionsList;
+	const [isView, setIsView] = viewRoute;
 
 	const { skill } = useContext(MainContext);
 	const [skills, setSkills] = skill;
@@ -34,25 +36,53 @@ function Skills() {
 		newSkills.splice(newPos, 0, skill);
 		setSkills([...newSkills]);
 	};
-	//temptest end
 
 	return (
 		<div>
-			<ReactTags
-				classNames={{
-					tags: 'skillHolder',
-					tag: 'skillClass',
-					tagInput: 'skillInput',
-					tagInputField: 'form-control',
-				}}
-				tags={skills}
-				suggestions={suggestions}
-				handleDelete={handleDelete}
-				handleAddition={handleAddition}
-				handleDrag={handleDrag}
-				delimiters={delimiters}
-				placeholder="Add Skills"
-			/>
+			<b>
+				<label className="sectionHeader">Skills</label>
+			</b>
+			<div className="buttonDiv">
+				{isView && (
+					<Link to="/create" className="navRouterLink" onClick={() => setIsView(false)}>
+						<Edit />
+					</Link>
+				)}
+			</div>
+			<div className="halfInput">
+				{!isView && (
+					<ReactTags
+						classNames={{
+							tags: 'skillHolder',
+							tag: 'skillClass',
+							tagInput: 'skillInput',
+							tagInputField: 'form-control',
+						}}
+						tags={skills}
+						suggestions={suggestions}
+						handleDelete={handleDelete}
+						handleAddition={handleAddition}
+						handleDrag={handleDrag}
+						delimiters={delimiters}
+						placeholder="Add Skills"
+					/>
+				)}
+				{isView && (
+					<ReactTags
+						classNames={{
+							tags: 'skillHolder',
+							tag: 'skillClass',
+							tagInput: 'skillInputView',
+							tagInputField: 'form-control',
+						}}
+						tags={skills}
+						suggestions={suggestions}
+						handleDrag={handleDrag}
+						delimiters={delimiters}
+						placeholder="Add Skills"
+					/>
+				)}
+			</div>
 		</div>
 	);
 }
