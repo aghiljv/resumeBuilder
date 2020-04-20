@@ -9,16 +9,16 @@ nav {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	width: 100vw;
-	min-height: 10vh;
-	background: black;
+	width: 100%;
+	min-height: 10%;
+	background: rgb(0, 0, 0);
 	color: white;
 	z-index: 10;
 }
 
 .mainPage {
-	position: absolute;
-	top: 10vh;
+	position: fixed;
+	top: 10%;
 	width: 100%;
 	z-index: 0;
 }
@@ -54,6 +54,15 @@ label {
 	background: white;
 	margin: 4%;
 	border-radius: 5%;
+	width: 40%;
+	display: -webkit-inline-box;
+	filter: invert(1);
+}
+
+article {
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	column-count: 2;
 }
 
 .iconStyle {
@@ -149,4 +158,16 @@ div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
 	background: #b7cfe0;
 	width: 100%;
 	cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+	.indSection {
+		width: 15%;
+	}
+	.sectionHolder {
+		height: 11vh;
+	}
+	.sectionContent {
+		padding: 10%;
+	}
 }

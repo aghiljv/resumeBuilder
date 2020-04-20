@@ -7,13 +7,30 @@ import Education from '../components/Education.js';
 import Experience from '../components/Experience.js';
 import Skills from '../components/Skills.js';
 
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { MainContext } from '../MainContext.js';
 
 function Create() {
-	const { baSection, edSection, exSection, skSection, createState, viewRoute } = useContext(MainContext);
+	const {
+		baSection,
+		edSection,
+		exSection,
+		skSection,
+		createState,
+		viewRoute,
+		basic,
+		education,
+		experience,
+		skill,
+	} = useContext(MainContext);
 	const [created, setCreated] = createState;
 	const [isView, setIsView] = viewRoute;
+	const [basicInfo, setBasicInfo] = basic;
+	const [educations, setEducations] = education;
+	const [experiences, setExperiences] = experience;
+	const [skills, setSkills] = skill;
+
+	const history = useHistory();
 
 	const [ba, setba] = baSection;
 	const [ed, seted] = edSection;
@@ -28,19 +45,111 @@ function Create() {
 	};
 
 	const nextSection = () => {
-		if (ba === true) {
+		if (ba === true && validateBasicEntries()) {
 			setActiveSection('education');
-		} else if (ed === true) {
+		} else if (ed === true && validateeduEntries()) {
 			setActiveSection('experience');
-		} else if (ex === true) {
+		} else if (ex === true && validateexpEntries()) {
 			setActiveSection('skills');
 		}
 	};
 
+	const validateBasicEntries = () => {
+		if (
+			basicInfo.name !== '' &&
+			basicInfo.dob !== undefined &&
+			basicInfo.email !== '' &&
+			basicInfo.phone !== '' &&
+			basicInfo.address !== ''
+		) {
+			return validateEmail();
+		} else {
+			alert('Some details are not entered in Basic Information');
+			return false;
+		}
+	};
+
+	const validateEmail = () => {
+		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(basicInfo.email)) {
+			return true;
+		}
+		alert('You have entered an invalid email address!');
+		return false;
+	};
+	const validateeduEntries = () => {
+		var returnBool = true;
+		educations.forEach((education) => {
+			console.log(education);
+			if (
+				education.instName !== '' &&
+				education.degree !== '' &&
+				education.major !== '' &&
+				education.year !== ''
+			) {
+				if (isNaN(education.year)) {
+					alert('Year in Education is supposed to be a number');
+					returnBool = false;
+				}
+			} else {
+				alert('Some details are not entered in Education');
+				returnBool = false;
+			}
+		});
+		return returnBool;
+	};
+
+	const validateexpEntries = () => {
+		var returnBool = true;
+		experiences.forEach((experience) => {
+			console.log(experience);
+			if (
+				experience.compName !== '' &&
+				experience.designation !== '' &&
+				experience.startYear !== '' &&
+				experience.present === true
+			) {
+				if (isNaN(experience.startYear)) {
+					console.log('first');
+					alert('Year in Experience is supposed to be a number');
+					returnBool = false;
+				}
+			} else if (
+				experience.compName !== '' &&
+				experience.designation !== '' &&
+				experience.startYear !== '' &&
+				experience.endYear !== '' &&
+				experience.present === false
+			) {
+				if (isNaN(experience.startYear) && isNaN(experience.endYear)) {
+					console.log('second');
+					alert('Year in Experience is supposed to be a number');
+					returnBool = false;
+				}
+			} else {
+				alert('Some details are not entered in Experience');
+				returnBool = false;
+			}
+		});
+		return returnBool;
+	};
+
+	const validateSkills = () => {
+		console.log(skills.length);
+		if (validateBasicEntries() && validateeduEntries() && validateexpEntries()) {
+			if (skills.length > 2) return true;
+		} else if (skills.length < 3) {
+			alert('Add atleast 3 skills');
+			return false;
+		}
+	};
+
 	const saveDetails = () => {
-		setCreated(true);
-		setIsView(true);
-		setActiveSection('basic');
+		if (validateSkills()) {
+			setCreated(true);
+			setIsView(true);
+			history.push('/view');
+			setActiveSection('basic');
+		}
 	};
 
 	return (
@@ -64,11 +173,11 @@ function Create() {
 					)}
 					{sk && (
 						<div className="buttonDiv">
-							<Link to="/view">
-								<button onClick={saveDetails} className="btn btn-primary">
-									Save
-								</button>
-							</Link>
+							{/* <Link to="/view"> */}
+							<button onClick={saveDetails} className="btn btn-primary">
+								Save
+							</button>
+							{/* </Link> */}
 						</div>
 					)}
 				</div>
