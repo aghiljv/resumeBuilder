@@ -22,6 +22,7 @@ export const MainProvider = (props) => {
 			present: true,
 		},
 	]);
+	const [dob, setDob] = useState(new Date());
 	const [skills, setSkills] = useState([]);
 
 	const [suggestions, setSuggetions] = useState([
@@ -44,6 +45,15 @@ export const MainProvider = (props) => {
 		{ id: 'Unity3D', text: 'Unity3D' },
 	]);
 
+	const [ba, setba] = useState(true);
+	const [ed, seted] = useState(false);
+	const [ex, setex] = useState(false);
+	const [sk, setsk] = useState(false);
+
+	const [isView, setIsView] = useState(false);
+
+	const [created, setCreated] = useState(false);
+
 	return (
 		<MainContext.Provider
 			value={{
@@ -52,6 +62,13 @@ export const MainProvider = (props) => {
 				experience: [experiences, setExperiences],
 				skill: [skills, setSkills],
 				suggestionsList: [suggestions, setSuggetions],
+				baSection: [ba, setba],
+				edSection: [ed, seted],
+				exSection: [ex, setex],
+				skSection: [sk, setsk],
+				viewRoute: [isView, setIsView],
+				dateOB: [dob, setDob],
+				createState: [created, setCreated],
 			}}
 		>
 			{props.children}
